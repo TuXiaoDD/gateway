@@ -98,7 +98,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.lym.Main</mainClass>
+                            <mainClass>com.lym.Bootstrap</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
