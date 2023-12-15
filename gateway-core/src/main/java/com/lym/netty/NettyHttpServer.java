@@ -1,11 +1,10 @@
 package com.lym.netty;
 
-import com.lym.Bootstrap;
 import com.lym.LifeCycle;
 import com.lym.config.BaseConfig;
 import com.lym.netty.handler.NettyHttpConnectionHandler;
 import com.lym.netty.handler.NettyHttpServerHandler;
-import com.lym.processor.NettyProcessor;
+import com.lym.netty.processor.NettyProcessor;
 import com.lym.util.RemotingUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
@@ -16,7 +15,6 @@ import io.netty.channel.epoll.Epoll;
 import io.netty.channel.epoll.EpollEventLoopGroup;
 import io.netty.channel.epoll.EpollServerSocketChannel;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.sctp.nio.NioSctpServerChannel;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
@@ -100,6 +98,10 @@ public class NettyHttpServer implements LifeCycle {
     public void shutdown() {
         if (bossLoopGroup != null) bossLoopGroup.shutdownGracefully();
         if (workLoopGroup != null) workLoopGroup.shutdownGracefully();
+    }
+
+    public EventLoopGroup getWorkLoopGroup(){
+        return this.workLoopGroup;
     }
 
     public boolean useEpoll() {

@@ -19,5 +19,24 @@ public class BaseConfig {
     private boolean nettyAllocator = true;
     // 64*1024*1024 http body最大长度
     private int maxContentLength = 67108864;
+    // http连接超时时间
+    private int connectTimeout = 30000;
+    // http 请求超时时间
+    private int requestTimeout = 30000;
+    // http 最大重试次数
+    private int maxRequestRetry = 3;
+    // http 最大连接数
+    private int maxConnections = 10000;
+    // http 每台主机最大连接数
+    private int maxConnectionsPerHost = 8000;
+    // 客户端空闲超时时间
+    private int pooledConnectionIdleTimeout = 60000;
+
+
+
+
+
+
+
 
 }

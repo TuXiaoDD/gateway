@@ -3,12 +3,13 @@ package com.lym.container;
 import com.lym.LifeCycle;
 import com.lym.config.BaseConfig;
 import com.lym.netty.NettyHttpServer;
-import com.lym.processor.NettyBaseProcessor;
-import com.lym.processor.NettyProcessor;
+import com.lym.netty.client.NettyHttpClient;
+import com.lym.netty.processor.NettyBaseProcessor;
+import com.lym.netty.processor.NettyProcessor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * 容器
+ * 容器启动类
  */
 @Slf4j
 public class NettyContainer implements LifeCycle {
@@ -16,6 +17,7 @@ public class NettyContainer implements LifeCycle {
     private NettyProcessor nettyProcessor;
 
     private NettyHttpServer nettyHttpServer;
+    private NettyHttpClient nettyHttpClient;
 
     private BaseConfig baseConfig;
 
@@ -29,7 +31,7 @@ public class NettyContainer implements LifeCycle {
         // todo 扩展
         nettyProcessor = new NettyBaseProcessor();
         nettyHttpServer = new NettyHttpServer(baseConfig, nettyProcessor);
-
+        nettyHttpClient = new NettyHttpClient(baseConfig, nettyHttpServer.getWorkLoopGroup());
     }
 
     @Override
@@ -37,11 +39,13 @@ public class NettyContainer implements LifeCycle {
         log.info("NettyContainer start");
         nettyProcessor.start();
         nettyHttpServer.start();
+        nettyHttpClient.start();
     }
 
     @Override
     public void shutdown() {
         nettyProcessor.shutdown();
         nettyHttpServer.shutdown();
+        nettyHttpClient.shutdown();
     }
 }

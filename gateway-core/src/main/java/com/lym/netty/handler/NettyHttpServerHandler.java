@@ -1,7 +1,7 @@
 package com.lym.netty.handler;
 
 import com.lym.context.HttpRequestWrapper;
-import com.lym.processor.NettyProcessor;
+import com.lym.netty.processor.NettyProcessor;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.FullHttpRequest;
 import lombok.extern.slf4j.Slf4j;
